@@ -1,0 +1,7 @@
+﻿CREATE PROCEDURE [dbo].[spReport_GetAll]
+	
+AS
+BEGIN
+	SELECT * FROM Report
+END
+RETURN 0

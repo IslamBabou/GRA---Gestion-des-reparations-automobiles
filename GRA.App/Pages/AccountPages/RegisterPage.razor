@@ -1,0 +1,116 @@
+﻿@page "/Register"
+@layout AuthenticationLayout
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4">
+            <EditForm Enhance Model="UserForRegistration" OnValidSubmit="RegisterUser_Click">
+                <DataAnnotationsValidator />
+                <div class="card bg-dark" style="opacity:0.8; margin-top:50%; border-radius:10px; color:white; font-weight:bold;">
+                    <div class="card-header text-center fs-5 mb-2">Créer un compte</div>
+                    <div class="card-body">
+                        <div class="form-group mt-3">
+                            <label class="form-label">Nom</label>
+                            <SfTextBox @bind-value="UserForRegistration.LastName" class="form-control" Placeholder="Entrer votre nom"></SfTextBox>
+                            <ValidationMessage For="@(() => UserForRegistration.LastName)" />
+                        </div>
+                        <div class="form-group mt-3">
+                            <label class="form-label">Prènom</label>
+                            <SfTextBox @bind-value="UserForRegistration.FirstName" class="form-control" Placeholder="Entrer votre prènom"></SfTextBox>
+                            <ValidationMessage For="@(() => UserForRegistration.FirstName)" />
+                        </div>
+                        <div class="form-group mt-3">
+                            <label class="form-label">Email</label>
+                            <SfTextBox @bind-value="UserForRegistration.Email" class="form-control" Placeholder="Entrer votre email"></SfTextBox>
+                            <ValidationMessage For="@(() => UserForRegistration.Email)" />
+                        </div>
+                        <div class="form-group mt-3">
+                            <label class="form-label">Mot de passe</label>
+                            <SfTextBox Type="InputType.Password"  @bind-value="UserForRegistration.Password" class="form-control" Placeholder="Entrer votre mot de passe"></SfTextBox>
+                            <ValidationMessage For="@(() => UserForRegistration.Password)" />
+
+                        </div>
+                        <div class="form-group mt-3">
+                            <label class="form-label">Confirmer le mot de passe</label>
+                            <SfTextBox Type="InputType.Password" @bind-value="UserForRegistration.ConfirmPassword" class="form-control" Placeholder="Confirmer votre mot de passe"></SfTextBox>
+                            <ValidationMessage For="@(() => UserForRegistration.ConfirmPassword)" />
+                        </div>
+                        <div class="form-group mt-3">
+                            <label class="form-label">Date de naissance</label>
+                            <InputDate @bind-Value="UserForRegistration.BirthDay" class="form-control"></InputDate>
+                            <ValidationMessage For="@(() => UserForRegistration.BirthDay)" />
+                        </div>
+                        <div class="form-group mt-3">
+                            <label class="form-label">N° télephone</label>
+                            <SfTextBox @bind-Value="UserForRegistration.Phone" class="form-control" Placeholder="Entrer votre n° de téléphone"></SfTextBox>
+                            <ValidationMessage For="@(() => UserForRegistration.Phone)" />
+                        </div>
+                        <div class="form-group mt-3">
+                            @if (ShowLoadingButton)
+                            {
+                                <ButtonLoadingSpinner></ButtonLoadingSpinner>
+                            }
+                            else
+                            {
+                                   <a href="/"> <button class="btn btn-outline-primary bi bi-house"></button> </a>
+                                <button class="btn btn-outline-primary float-end" type="submit">S'inscrire</button>
+                            }
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <span class="text-center">
+                            Vous avez déjà un compte? |
+                            <a class="btn-link" href="/login">Login</a>
+                        </span>
+                    </div>
+                </div>
+            </EditForm>
+        </div>
+        <div class="col-lg-4">    
+        </div>
+    </div>
+</div>
+
+
+@code {
+    public bool ShowLoadingButton { get; set; } = false;
+    UserForRegistrationDto UserForRegistration = new();
+
+    protected async override Task OnInitializedAsync()
+    {
+        UserForRegistration.Id = null;
+        UserForRegistration.IdRole = 3;
+        UserForRegistration.BirthDay = new DateTime(1900, 1, 1);
+        UserForRegistration.LastLogin = null;
+        UserForRegistration.IsDeactivated = false;
+    }
+
+    
+
+    [Inject]
+    public IAuthService AuthService { get; set; }
+
+    [Inject]
+    public NavigationManager NavigationManager { get; set; }
+
+    public string? ErrorMessage { get; set; }
+
+    protected async Task RegisterUser_Click()
+    {
+        ShowLoadingButton = true;
+        try
+        {
+            //Todo : set user register values
+            await AuthService.RegisterUser(UserForRegistration);
+            NavigationManager.NavigateTo($"/Login");
+        }
+        catch (Exception ex)
+        {
+            ErrorMessage = ex.Message;
+        }
+        ShowLoadingButton = false;
+    }
+}
+}

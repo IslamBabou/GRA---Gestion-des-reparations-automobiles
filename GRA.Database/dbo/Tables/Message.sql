@@ -1,0 +1,9 @@
+﻿CREATE TABLE [dbo].[Message]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
+    [UserName] NVARCHAR(20) NOT NULL, 
+    [Content] NVARCHAR(MAX) NOT NULL, 
+    [PublicationDate] DATETIME NOT NULL, 
+    [IsRead] BIT NOT NULL DEFAULT 0, 
+    [Tag] NVARCHAR(20) NOT NULL
+)

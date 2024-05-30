@@ -1,0 +1,55 @@
+﻿@page "/Testimonials"
+@inject IJSRuntime JS
+<div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s" id="testimonials">
+    <div class="container">
+        <div class="text-center">
+            <h5 class="text-primary text-uppercase">[ Témoignage ]</h5>
+            <h1 class="mb-5">Ce Qu'en Disent Nos Clients !</h1>
+        </div>
+        <div class="owl-carousel testimonial-carousel position-relative">
+            <div class="testimonial-item text-center">
+                <img class="bg-light rounded-circle p-2 mx-auto mb-3" src="images/testimonial-1.jpg" style="width: 80px; height: 80px;">
+                <h5 class="mb-0">Asma ARBI</h5>
+                <p>Infirmière</p>
+                <div class="testimonial-text bg-light text-center p-4">
+                    <p class="mb-0">Service rapide et convivial, le personnel compétent m'a tenu informé à chaque étape. Je reviendrai ici pour mes besoins futurs en entretien automobile.</p>
+                </div>
+            </div>
+            <div class="testimonial-item text-center">
+                <img class="bg-light rounded-circle p-2 mx-auto mb-3" src="images/testimonial-2.jpg" style="width: 80px; height: 80px;">
+                <h5 class="mb-0">Abdeljalil BELGENDOUZ</h5>
+                <p>Étudiant</p>
+                <div class="testimonial-text bg-light text-center p-4">
+                    <p class="mb-0">Réactifs dès le début, l'atelier a fourni un devis détaillé et expliqué les réparations nécessaires. Leur professionnalisme est évident, je recommande vivement leurs services.</p>
+                </div>
+            </div>
+            <div class="testimonial-item text-center">
+                <img class="bg-light rounded-circle p-2 mx-auto mb-3" src="images/testimonial-3.jpg" style="width: 80px; height: 80px;">
+                <h5 class="mb-0">Sirej ADJERIME</h5>
+                <p>Avocat</p>
+                <div class="testimonial-text bg-light text-center p-4">
+                    <p class="mb-0">Impressionné par la qualité du service et la transparence des coûts. Le personnel compétent a rendu l'expérience agréable. Je suis pleinement satisfait et je recommande cet atelier à tous.</p>
+                </div>
+            </div>
+            <div class="testimonial-item text-center">
+                <img class="bg-light rounded-circle p-2 mx-auto mb-3" src="images/testimonial-4.jpg" style="width: 80px; height: 80px;">
+                <h5 class="mb-0">Sabrina CHEKHBAB</h5>
+                <p>Médecin</p>
+                <div class="testimonial-text bg-light text-center p-4">
+                    <p class="mb-0">Service exceptionnel du début à la fin. Le personnel était réactif et a pris le temps d'expliquer chaque étape des réparations. Leur engagement envers la satisfaction du client est remarquable. Je suis reconnaissant et je reviendrai certainement.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Testimonial End -->
+@code {
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JS.InvokeAsync<IJSObjectReference>("import", "../js/main.js");
+        }
+    }
+
+}

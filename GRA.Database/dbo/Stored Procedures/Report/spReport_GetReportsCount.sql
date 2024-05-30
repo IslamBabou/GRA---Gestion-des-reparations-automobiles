@@ -1,0 +1,9 @@
+﻿CREATE PROCEDURE [dbo].[spReport_GetReportsCount]
+
+AS
+BEGIN
+	SET NOCOUNT ON;
+	SELECT COUNT(*) FROM Report
+END
+
+RETURN 0

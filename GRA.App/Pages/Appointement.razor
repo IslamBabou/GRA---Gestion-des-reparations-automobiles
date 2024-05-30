@@ -1,0 +1,85 @@
+﻿@page "/Appointment"
+<!-- Booking Start -->
+<div class="container-fluid bg-secondary booking my-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container">
+        <div class="row gx-5">
+            <div class="col-lg-6 py-5">
+                <div class="py-5">
+                    <h1 class="text-white mb-4">Fournisseur de services de réparation automobile certifié et populaire</h1>
+                    <p class="text-white mb-0">Depuis 5 ans, nous avons le plaisir d'être votre fournisseur de services de réparation automobile certifié et populaire dans la région</p>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="bg-primary h-100 d-flex flex-column justify-content-center text-left p-5 wow zoomIn" data-wow-delay="0.6s">
+                    <EditForm Model="userAppointment" OnInvalidSubmit="HandleValidSubmit">
+                        <DataAnnotationsValidator />
+                        <h1 class="text-white mb-4" style="text-align:center;">Prendre un rendez-vous</h1>
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <SfTextBox @bind-Value="userAppointment.NumberPlate" placeholder="Plaque d'immatriculation du véhicule" class="form-control"> </SfTextBox>
+                                <ValidationMessage For="@(() => userAppointment.NumberPlate)" />
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <SfTextBox @bind-Value="userAppointment.FirstName" placeholder="Nom" class="form-control"> </SfTextBox>
+                                <ValidationMessage For="@(() => userAppointment.FirstName)" />
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <SfTextBox @bind-Value="userAppointment.LastName" placeholder="Prénom" class="form-control"> </SfTextBox>
+                                <ValidationMessage For="@(() => userAppointment.LastName)" />
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <SfTextBox @bind-Value="userAppointment.CompanyName" placeholder="Raison sociale" class="form-control"> </SfTextBox>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <div class="date" data-target-input="nearest">
+                                    <InputDate @bind-Value="userAppointment.DateAppointment" class="form-control"></InputDate>
+                                    <ValidationMessage For="@(() => userAppointment.DateAppointment)" />
+                                </div>
+                            </div>
+                            <div class="col-12 ">
+                                <SfTextBox @bind-Value="userAppointment.Nin" placeholder="Numéro d'identité nationale" class="form-control"> </SfTextBox>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <SfTextBox @bind-Value="userAppointment.Email" placeholder="Email" class="form-control"> </SfTextBox>
+                                <ValidationMessage For="@(() => userAppointment.Email)" />
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <SfTextBox @bind-Value="userAppointment.Phone" placeholder="Téléphone" class="form-control"> </SfTextBox>
+                                <ValidationMessage For="@(() => userAppointment.Phone)" />
+                            </div>
+                            <div class="col-12">
+                                <SfTextBox @bind-Value="userAppointment.Address" placeholder="Adresse" class="form-control"> </SfTextBox>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <SfTextBox @bind-Value="userAppointment.ZipCode" placeholder="Code postale" class="form-control"> </SfTextBox>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <SfTextBox @bind-Value="userAppointment.City" placeholder="Ville" class="form-control"> </SfTextBox>
+                            </div>
+                            <div class="text-center">
+                                <button class="btn btn-secondary" type="submit">Valider</button>
+                            </div>
+                        </div>
+                    </EditForm>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Booking End -->
+@code {
+    BookAppointmentDto? userAppointment;
+
+    protected async override Task OnInitializedAsync()
+    {
+        userAppointment = new BookAppointmentDto();
+        userAppointment.DateAppointment = DateTime.Now;
+    }
+
+
+    private void HandleValidSubmit()
+    {
+        
+    }
+}

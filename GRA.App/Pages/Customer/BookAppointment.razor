@@ -1,0 +1,88 @@
+﻿@page "/BookAppointment"
+@layout SideBarLayout
+<!-- Booking Start -->
+<div class="container-fluid bg-secondary booking my-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container">
+            <div class="col-lg-8">
+                <div class="bg-primary h-100 d-flex flex-column justify-content-center text-left p-5 wow zoomIn" data-wow-delay="0.6s">
+                    <EditForm Model="userBookAppointment" OnInvalidSubmit="HandleValidSubmit">
+                        <DataAnnotationsValidator />
+                        <h1 class="text-white mb-4" style="text-align:center;">Prendre un rendez-vous</h1>
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <SfTextBox @bind-Value="userBookAppointment.NumberPlate" placeholder="Plaque d'immatriculation du véhicule" class="form-control"> </SfTextBox>
+                                <ValidationMessage For="@(() => userBookAppointment.NumberPlate)" />
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <SfTextBox @bind-Value="userBookAppointment.FirstName" placeholder="Nom" class="form-control"> </SfTextBox>
+                                <ValidationMessage For="@(() => userBookAppointment.FirstName)" />
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <SfTextBox @bind-Value="userBookAppointment.LastName" placeholder="Prénom" class="form-control"> </SfTextBox>
+                                <ValidationMessage For="@(() => userBookAppointment.LastName)" />
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <SfTextBox @bind-Value="userBookAppointment.CompanyName" placeholder="Raison sociale" class="form-control"> </SfTextBox>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <div class="date" data-target-input="nearest">
+                                    <InputDate @bind-Value="userBookAppointment.DateAppointment" class="form-control"></InputDate>
+                                    <ValidationMessage For="@(() => userBookAppointment.DateAppointment)" />
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <SfTextBox @bind-Value="userBookAppointment.Phone" placeholder="Téléphone" class="form-control"> </SfTextBox>
+                                <ValidationMessage For="@(() => userBookAppointment.Phone)" />
+                            </div>
+                            <div class="col-12">
+                                <SfTextBox @bind-Value="userBookAppointment.Address" placeholder="Adresse" class="form-control"> </SfTextBox>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <SfTextBox @bind-Value="userBookAppointment.ZipCode" placeholder="Code postale" class="form-control"> </SfTextBox>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <SfTextBox @bind-Value="userBookAppointment.City" placeholder="Ville" class="form-control"> </SfTextBox>
+                            </div>
+                            <div class="text-center">
+                                <button class="btn btn-secondary" type="submit">Valider</button>
+                            </div>
+                        </div>
+                    </EditForm>
+                </div>
+            </div>
+        
+    </div>
+</div>
+
+<!-- Booking End -->
+@code {
+    public bool ShowLoadingButton { get; set; } = false;
+
+    BookAppointmentDto userBookAppointment;
+    AppointmentDto? userAppointment;
+    
+
+    protected async override Task OnInitializedAsync()
+    {
+        userAppointment.DateAppointment = DateTime.Now;
+       
+    }
+
+
+    private async void HandleValidSubmit()
+    {
+        // ShowLoadingButton = true;
+        // try
+        // {
+        //      = await AppointmentService.CreateAppointment(userAppointment);
+
+        //     NavigationManager.NavigateTo($"/AppointmentSuccessful");
+        // }
+        // catch (Exception ex)
+        // {
+            
+        // }
+        // ShowLoadingButton = false;
+
+    }
+}

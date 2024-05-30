@@ -1,0 +1,100 @@
+﻿
+
+<div class="top-row ps-3 navbar navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="">GRA</a>
+        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</div>
+
+<div class="@NavMenuCssClass nav-scrollable" @onclick="ToggleNavMenu">
+    <nav class="flex-column">
+        <div class="nav-item px-3">
+            <NavLink class="nav-link px-3" href="" Match="NavLinkMatch.All">
+                <span class="oi oi-home me-3" aria-hidden="true"></span> Accueil
+            </NavLink>
+        </div>
+
+        @* User Nav Menu Links *@
+        @* <AuthorizeView>
+        <NotAuthorized> *@
+        <div class="nav-item px-3">
+            <NavLink class="nav-link px-3" href="BookAppointment">
+                <span class="oi oi-book me-3" aria-hidden="true"></span> Prendre un rendez-vous
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link px-3" href="ShowRepair">
+                <span class="oi bi-gear-wide me-3" aria-hidden="true"></span> Réparations
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link px-3" href="SearchReports">
+                <span class="oi oi-magnifying-glass me-3" aria-hidden="true"></span> Recherche de rapports
+            </NavLink>
+        </div>
+        @* </NotAuthorized>
+        </AuthorizeView> *@
+
+        @* Mechanic Nav Menu Links *@
+        @*<AuthorizeView Roles="Mechanic">
+        <div class="nav-item px-3">
+        <NavLink class="nav-link px-3" href="Jobs">
+        <span class="oi oi-wrench" aria-hidden="true"></span> Fiches d'intervention
+        </NavLink>
+        </div>
+        </AuthorizeView>*@
+
+        @* Manager Nav Menu Links *@
+        @*<AuthorizeView Roles="Manager">*@
+        <div class="nav-item px-3">
+            <NavLink class="nav-link px-3" href="ManageJobCards">
+                <span class="oi oi-wrench me-3 " aria-hidden="true"></span> Fiches d'intervention
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link px-3" href="Reports">
+                <span class="oi oi-task me-3" aria-hidden="true"></span> Rapports
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link px-3" href="SearchCustomer">
+                <span class="oi oi-people me-3" aria-hidden="true"></span> Rechercher un client
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link px-3" href="SearchVehicle">
+                <span class="oi oi-magnifying-glass me-3" aria-hidden="true"></span> Rechercher un véhicule
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link px-3" href="Inventory">
+                <span class="oi oi-list-rich me-3" aria-hidden="true"></span> Stock
+            </NavLink>
+        </div>
+
+        @*</AuthorizeView>*@
+    </nav>
+</div>
+
+
+@code {
+    private bool collapseNavMenu = true;
+
+
+
+    private string? NavMenuCssClass => collapseNavMenu ? "collapseNavbar" : null;
+    
+
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+}
+

@@ -1,0 +1,9 @@
+﻿CREATE TABLE [dbo].[Stock]
+(
+	[Id] INT NOT NULL IDENTITY PRIMARY KEY, 
+    [ItemName] NVARCHAR(100) NOT NULL, 
+    [Quantity] DECIMAL(5, 2) NOT NULL, 
+    [Unit] NVARCHAR(15) NOT NULL, 
+    [MinQty] DECIMAL(5, 2) NOT NULL
+
+)

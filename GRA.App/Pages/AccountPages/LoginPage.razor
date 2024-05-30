@@ -1,0 +1,94 @@
+﻿@page "/Login"
+@layout AuthenticationLayout
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4">
+            <EditForm Enhance Model="UserForLogin" OnValidSubmit="LoginUser_Click">
+                <DataAnnotationsValidator />
+                <div class="card bg-dark" style="opacity:0.8; margin-top:50%; border-radius:10px; color:white; font-weight:bold;">
+                    <div class="card-header text-center fs-5 mb-2">Login</div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-4"></div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 d-flex justify-content-center">
+                                <img style="border-radius:20px" src="../images/logo/carservice.png" height="50" width="50" />
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4"></div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group mt-3">
+                            <label class="form-label">Email</label>
+                            <SfTextBox @bind-value="UserForLogin.Email" class="form-control" Placeholder="Entrer votre email"></SfTextBox>
+                            <ValidationMessage For="@(() => UserForLogin.Email)" />
+                        </div>
+                        <div class="form-group mt-3">
+                            <label class="form-label">Mot de passe</label> 
+                            <SfTextBox Type="InputType.Password" @bind-value="UserForLogin.Password" class="form-control" Placeholder="Entrer votre mot de passe"></SfTextBox>
+                            <ValidationMessage For="@(() => UserForLogin.Password)" />
+                        </div>
+                        <div class="form-group mt-3">
+                            @if (ShowLoadingButton)
+                            {
+                                <ButtonLoadingSpinner></ButtonLoadingSpinner>
+                            }
+                            else
+                            {
+                                <a href="/"> <button class="btn btn-outline-primary bi bi-house"></button> </a>
+                                
+                                <button class="btn btn-outline-primary float-end" type="submit">Login</button>
+                            }
+                              
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <span class="text-center">
+                            Vous n'avez pas de compte? |
+                            <a class="btn-link" href="/Register">S'inscrire</a>
+                        </span>
+                    </div>
+                </div>
+            </EditForm>
+        </div>
+        <div class="col-lg-4"></div>
+    </div>
+</div>
+
+
+@code {
+
+    public bool ShowLoadingButton { get; set; } = false;
+
+    [Inject]
+    public IAuthService AuthService { get; set; }
+
+    [Inject]
+    public NavigationManager NavigationManager { get; set; }
+
+    protected UserForLoginDto UserForLogin { get; set; } = new UserForLoginDto();
+
+    public DateTime? Expiration { get; set; }
+    public string? ErrorMessage { get; set; }
+
+    protected async Task LoginUser_Click()
+    {
+        ShowLoadingButton = true;
+        try
+        {
+            Expiration = await AuthService.LoginAsync(UserForLogin);
+            
+            ErrorMessage = null;
+            NavigationManager.NavigateTo($"/Repairs");
+        }
+        catch (Exception ex)
+        {
+            Expiration = null;
+            ErrorMessage = ex.Message;
+        }
+        ShowLoadingButton = false;
+    }
+}
+}

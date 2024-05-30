@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>GRA.Database</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{ddc86d83-b2ff-4fce-9793-c3f003399d09}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql160DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>GRA.Database</RootNamespace>
+    <AssemblyName>GRA.Database</AssemblyName>
+    <ModelCollation>1033, CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="dbo" />
+    <Folder Include="dbo\Tables" />
+    <Folder Include="dbo\Stored Procedures" />
+    <Folder Include="Publish Profiles" />
+    <Folder Include="Scripts" />
+    <Folder Include="dbo\Stored Procedures\User" />
+    <Folder Include="dbo\Stored Procedures\Role" />
+    <Folder Include="dbo\Stored Procedures\Auth" />
+    <Folder Include="dbo\Stored Procedures\Customer" />
+    <Folder Include="dbo\Stored Procedures\Vehicle" />
+    <Folder Include="dbo\Stored Procedures\Stock" />
+    <Folder Include="dbo\Stored Procedures\Appointment" />
+    <Folder Include="dbo\Stored Procedures\Message" />
+    <Folder Include="dbo\Stored Procedures\Report" />
+    <Folder Include="dbo\Stored Procedures\Repair" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo\Tables\User.sql" />
+    <Build Include="dbo\Tables\Role.sql" />
+    <Build Include="dbo\Tables\Customer.sql" />
+    <Build Include="dbo\Tables\Vehicle.sql" />
+    <Build Include="dbo\Tables\Appointment.sql" />
+    <Build Include="dbo\Tables\Auth.sql" />
+    <Build Include="dbo\Stored Procedures\Auth\spRegistration_Upsert.sql" />
+    <Build Include="dbo\Stored Procedures\Auth\spLoginConfirmation_Get.sql" />
+    <Build Include="dbo\Stored Procedures\Auth\spEmailExists_Get.sql" />
+    <Build Include="dbo\Stored Procedures\Auth\spUserId_Get.sql" />
+    <Build Include="dbo\Stored Procedures\User\spUser_Upsert.sql" />
+    <Build Include="dbo\Stored Procedures\User\spUser_Delete.sql" />
+    <Build Include="dbo\Stored Procedures\Role\spRole_Upsert.sql" />
+    <Build Include="dbo\Stored Procedures\Customer\spCustomer_Delete.sql" />
+    <Build Include="dbo\Stored Procedures\Customer\spCustomer_GetAll.sql" />
+    <Build Include="dbo\Stored Procedures\Customer\spCustomer_GetById.sql" />
+    <Build Include="dbo\Stored Procedures\Customer\spCustomer_Upsert.sql" />
+    <Build Include="dbo\Stored Procedures\Vehicle\spVehicle_GetAll.sql" />
+    <Build Include="dbo\Stored Procedures\Vehicle\spVehicle_GetByCustomerId.sql" />
+    <Build Include="dbo\Stored Procedures\Vehicle\spVehicle_GetById.sql" />
+    <Build Include="dbo\Stored Procedures\Vehicle\spVehicle_Upsert.sql" />
+    <Build Include="dbo\Stored Procedures\Customer\spCustomer_Search.sql" />
+    <Build Include="dbo\Stored Procedures\Vehicle\spVehicle_Search.sql" />
+    <Build Include="dbo\Tables\Stock.sql" />
+    <Build Include="dbo\Stored Procedures\Stock\spStock_Upsert.sql" />
+    <Build Include="dbo\Stored Procedures\Stock\spStock_Delete.sql" />
+    <Build Include="dbo\Stored Procedures\Stock\spStock_GetAll.sql" />
+    <Build Include="dbo\Stored Procedures\Stock\spStock_GetById.sql" />
+    <Build Include="dbo\Stored Procedures\Stock\spStock_Search.sql" />
+    <Build Include="dbo\Stored Procedures\Stock\spStock_GetLows.sql" />
+    <Build Include="dbo\Stored Procedures\Vehicle\spVehicle_UpdateFirstVisitById.sql" />
+    <Build Include="dbo\Stored Procedures\Appointment\spAppointment_AssignMechanicById.sql" />
+    <Build Include="dbo\Stored Procedures\Appointment\spAppointment_CountByMechanicToday.sql" />
+    <Build Include="dbo\Stored Procedures\Appointment\spAppointment_Delete.sql" />
+    <Build Include="dbo\Stored Procedures\Appointment\spAppointment_UpdateCompletedById.sql" />
+    <Build Include="dbo\Tables\Report.sql" />
+    <Build Include="dbo\Tables\Message.sql" />
+    <Build Include="dbo\Stored Procedures\Appointment\spAppointment_GetById.sql" />
+    <Build Include="dbo\Stored Procedures\Appointment\spAppointment_GetAll.sql" />
+    <Build Include="dbo\Stored Procedures\Appointment\spAppointment_GetUncompleted.sql" />
+    <Build Include="dbo\Stored Procedures\Appointment\spAppointment_Create.sql" />
+    <Build Include="dbo\Stored Procedures\Appointment\spAppointment_GetToday.sql" />
+    <Build Include="dbo\Stored Procedures\Message\spMessage_Create.sql" />
+    <Build Include="dbo\Stored Procedures\Message\spMessage_MarkAsRead.sql" />
+    <Build Include="dbo\Stored Procedures\Message\spMessage_GetAll.sql" />
+    <Build Include="dbo\Stored Procedures\Appointment\spAppointment_Details_GetAll.sql" />
+    <Build Include="dbo\Stored Procedures\Report\spReport_Archive.sql" />
+    <Build Include="dbo\Stored Procedures\Report\spReport_GetReportsCount.sql" />
+    <Build Include="dbo\Stored Procedures\Report\spReport_Pagination.sql" />
+    <Build Include="dbo\Stored Procedures\Report\spReport_GetById.sql" />
+    <Build Include="dbo\Stored Procedures\Report\spReport_GetByVehicleId.sql" />
+    <Build Include="dbo\Stored Procedures\Report\spReport_GetAll.sql" />
+    <Build Include="dbo\Stored Procedures\Report\spReport_SearchAllDashboard.sql" />
+    <Build Include="dbo\Stored Procedures\Report\spReport_SearchAllNonArchivedDashboard.sql" />
+    <Build Include="dbo\Stored Procedures\Report\spReport_GetByCustomerId.sql" />
+    <Build Include="dbo\Stored Procedures\Report\spReport_Upsert.sql" />
+    <Build Include="dbo\Tables\Repair.sql" />
+    <Build Include="dbo\Stored Procedures\Repair\spRepair_Upsert.sql" />
+    <Build Include="dbo\Stored Procedures\Repair\spRepair_GetAll.sql" />
+    <Build Include="dbo\Stored Procedures\Repair\spRepair_GetById.sql" />
+    <Build Include="dbo\Stored Procedures\Repair\spRepair_GetByCustomerId.sql" />
+    <Build Include="dbo\Stored Procedures\Repair\spRepair_GetByPlateNumber.sql" />
+    <Build Include="dbo\Stored Procedures\User\spUser_GetAll.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="GRA.Database.refactorlog" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Publish Profiles\GRA.Database.publish.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Scripts\Script.PostDeployment.sql" />
+  </ItemGroup>
+</Project>

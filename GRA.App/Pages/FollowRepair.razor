@@ -1,0 +1,33 @@
+﻿@page "/FollowRepair"
+<div class="container-fluid bg-primary booking my-5 " >
+    <div class="row justify-content-center ">
+        <div class="col-4">
+            <EditForm></EditForm>
+            <DataAnnotationsValidator />
+            <div class="card border  text-white wow fadeInDown data-wow-delay="0.1s"" style="opacity: 0.9; margin-top: 10%; margin-bottom: 10%; border-radius: 20px; font-weight: bold; background: transparent; backdrop-filter: blur(15px);">
+                <div class="card-header text-center fs-5 mb-2 p-3 border-bottom">Suivre une réparation</div>
+                <div class="card-body">
+                    <div class="form-group row" style="margin-bottom:2%;">
+                        <label for="nin" class="col-sm-5 col-form-label">N° d'identité nationale :</label>
+                        <div class="col-sm-7 ">
+                            <input type="text" class="form-control text-dark" placeholder="Numéro d'identité nationale">
+                            
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="matricule" class="col-sm-5 col-form-label" >N° d'immatriculation :</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control text-dark" placeholder="Matricule de votre véhicule">
+                        </div>
+                    </div>
+                    <div class="form-group mt-3">
+                        <button class="btn btn-outline-secondary float-end" type="submit">Envoyer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+}
